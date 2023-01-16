@@ -65,15 +65,20 @@ SELECT *
   ORDER BY [Salary] DESC, [FirstName] ASC, [LastName] DESC, [MiddleName] ASC
 
 --Problem 16
+GO
+
 CREATE VIEW [V_EmployeesSalaries]
     AS ( 
 SELECT [FirstName], [LastName], [Salary]
   FROM [Employees] )
 
+GO
+
 SELECT * FROM [V_EmployeesSalaries]
 
-
 --Problem 17
+GO
+
 CREATE VIEW [V_EmployeeNameJobTitle]
     AS ( 
 SELECT CONCAT([FirstName], ' ', [MiddleName], ' ', [LastName])
@@ -81,8 +86,9 @@ SELECT CONCAT([FirstName], ' ', [MiddleName], ' ', [LastName])
 	   [JobTitle]
   FROM [Employees] )
 
-SELECT * FROM [V_EmployeeNameJobTitle]
+GO
 
+SELECT * FROM [V_EmployeeNameJobTitle]
 
 --Problem 18
 SELECT DISTINCT [JobTitle]
