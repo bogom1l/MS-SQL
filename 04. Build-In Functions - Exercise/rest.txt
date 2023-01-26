@@ -1,0 +1,58 @@
+select FirstName,LastName
+from Employees
+WHERE FirstName like 'sa%'
+
+select FirstName,LastName
+from Employees
+WHERE LastName like '_%ei%'
+
+select FirstName
+from Employees
+ WHERE DepartmentID IN (3,10) 
+ AND Year(HireDate) BETWEEN 1995 AND 2005
+
+Select FirstName,LastName
+from Employees
+WHERE JobTitle NOT LIKE ('%engineer%')
+
+Select Name
+from Towns
+WHERE LEN(NAME) IN (5,6) 
+ORDER BY NAME ASC
+
+Select [TownID],[Name]
+from Towns
+ WHERE 
+ [NAME] LIKE 'M%' 
+  OR [NAME] LIKE'K%'
+  OR [NAME] LIKE'B%'
+  OR [NAME] LIKE'E%'
+ ORDER BY NAME ASC
+
+Select [TownID],[Name]
+from Towns
+ WHERE LEFT ([Name],1) NOT IN('R','B','D')
+ ORDER BY [NAME] ASC
+
+ Select [FirstName],[LastName]
+ from Employees
+ WHERE LEN(LASTNAME)=5
+
+SELECT [EmployeeID], [FirstName], [LastName], [Salary],
+DENSE_RANK() OVER(PARTITION BY [Salary] ORDER BY [EmployeeID]) 
+AS [Rank]
+FROM [Employees]
+WHERE [Salary] BETWEEN 10000 AND 50000
+ORDER BY [Salary] DESC
+
+Select [CountryName],[IsoCode]
+from Countries
+WHERE LOWER(CountryName) LIKE '%a%a%a%'
+ORDER BY IsoCode
+
+SELECT p.PeakName,
+       r.RiverName,
+       LOWER(CONCAT(p.PeakName,SUBSTRING(r.RiverName,2,LEN(r.RiverName)))) AS Mix
+FROM Peaks AS p, Rivers AS r
+WHERE  LOWER(RIGHT(p.PeakName,1))=LOWER(LEFT(r.RiverName,1))
+ORDER BY Mix
